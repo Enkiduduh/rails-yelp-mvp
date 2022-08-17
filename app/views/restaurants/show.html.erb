@@ -3,9 +3,16 @@
   <p>Location : <%= @restaurant.address  %></p>
   <p>Phone Number : <%= @restaurant.phone_number  %></p>
   <p>Category : <%= @restaurant.category  %></p>
+
+  <ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+  <% end %>
+</ul>
+
 <p>-----------------------------</p>
 <%= link_to "Back to Restaurants's list", restaurants_path  %>
 <p>-----------------------------</p>
 <%= link_to "Delete restaurant", restaurant_path, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <p>-----------------------------</p>
-<%= link_to "Add a review to #{@restaurant.name}",  new_restaurant_review_path(@review.@restaurant_id)  %>
+<%= link_to "Add a review to #{@restaurant.name}",  restaurant_reviews_path(@restaurant)  %>
